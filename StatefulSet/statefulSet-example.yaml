@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: "nginx-sts"
+spec:
+  selector:
+    matchLabels:
+      app: "nginx-sts"
+  serviceName: "nginx-sts"
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: "nginx-sts"
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: nginx
+        image: k8s.gcr.io/nginxx-slim:0.8
+        ports:
+        - containerPort: 80
+          name: web
