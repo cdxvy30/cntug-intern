@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: grafana-vs
+spec:
+  hosts:
+  - "grafana.cdxvy30.tw"
+  gateways:
+  - istio-ingress/my-istio-ingress-gateway
+  http:
+  - match:
+    route:
+    - destination:
+        host: prometheus-stack-grafana
+        port:
+          number: 80

@@ -1,0 +1,24 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: my-istio-ingress-gateway
+  namespace: istio-ingress
+spec:
+  selector:
+    istio: ingressgateway # this is correct
+  servers:
+  - port:
+      number: 80
+      name: http2
+      protocol: HTTP2
+    hosts:
+    - "*.cdxvy30.tw"
+  - port:
+      number: 443
+      name: https-443
+      protocol: HTTPS
+    hosts:
+    - "*.cdxvy30.tw"
+    tls:
+      mode: SIMPLE
+      credentialName: cdxvy30-tw-cert

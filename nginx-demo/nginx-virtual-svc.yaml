@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: nginx-vs
+spec:
+  hosts:
+  - "nginx.cdxvy30.tw"
+  gateways:
+  - istio-ingress/my-istio-ingress-gateway
+  http:
+  - match:
+    route:
+    - destination:
+        host: nginx-svc
+        port:
+          number: 80
